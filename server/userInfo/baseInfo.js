@@ -2,6 +2,7 @@
  * created by zhangzihao on {2021/7/26}
  */
 
+const {levelUp} = require('./level');
 const {getDB} = require('../db');
 const _addUser = async (userName) => {
     const db = await getDB('BaseInfo');
@@ -48,6 +49,7 @@ const addExp = async ({ uid, exp }) => {
     const baseInfo = await getBaseInfo({ uid });
     const newExp = baseInfo.exp + exp;
     const newLevel = Math.floor(newExp / 10000);
+    await levelUp({baseInfo, newLevel});
     await updateBaseInfo({ uid, info: { exp: newExp, level: newLevel } });
 };
 module.exports.addExp = addExp;

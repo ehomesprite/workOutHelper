@@ -1,12 +1,13 @@
 /**
  * created by zhangzihao on {2021/7/26}
  */
+const {addExp} = require('../userInfo/baseInfo');
 const {getRandomNumber} = require('../utils/common');
-const {USER_QUEST_DB} = require('./const');
+const {USER_QUEST_DB} = require('../const/quest');
 const {getBaseInfo} = require('../userInfo/baseInfo');
-const {QuestState} = require('./const');
+const {QuestState} = require('../const/quest');
 const {MS_HOUR, MS_DAY, formatTime} = require('../utils/date');
-const {QuestType} = require('./const');
+const {QuestType} = require('../const/quest');
 const {getDB} = require('../db');
 
 const getTodayDateStr = () => {
@@ -20,7 +21,7 @@ const getTodayDateStr = () => {
         date = `${date} 04:00:00`;
     }
     return date;
-}
+};
 
 const hasUserDailyQuest = async ({uid, date}) => {
     const db = await getDB(USER_QUEST_DB);
@@ -80,7 +81,7 @@ const getWeekDateStr = () => {
     if (weekday === 1 && now.getHours() < 4) weekday += 7;
     const dateStr = formatTime(now.getTime() - (weekday - 1) * MS_DAY, 'yyyy/MM/dd 04:00:00');
     return dateStr;
-}
+};
 
 const hasUserWeeklyQuest = async ({uid, date}) => {
     const db = await getDB('UserQuest');
@@ -88,7 +89,7 @@ const hasUserWeeklyQuest = async ({uid, date}) => {
     return !!list.length;
 };
 
-const createUserWeeklyNormalQuestList = async ({uid, date}) => {
+const createUserWeeklyNormalQuestList = async () => {
     const db = await getDB('Quest');
     const questList = await db.find({ type: QuestType.WEEKLY, level: 'N' }).toArray();
     const normalQuest = [];
@@ -101,7 +102,7 @@ const createUserWeeklyNormalQuestList = async ({uid, date}) => {
     return normalQuest;
 };
 
-const createUserWeeklyHardQuest = async ({uid, date}) => {
+const createUserWeeklyHardQuest = async () => {
     const isVH = Math.random() < 0.15;
     const level = isVH ? 'VH' : 'H';
     const db = await getDB('Quest');
@@ -114,7 +115,7 @@ const createUserWeeklyHardQuest = async ({uid, date}) => {
 
 const readWeeklyQuestList = async ({uid, date}) => {
     const db = await getDB(USER_QUEST_DB);
-    const questList = await db.find({ uid, type: QuestType.WEEKLY }).sort({ exp: 1 }).toArray();
+    const questList = await db.find({ uid, date, type: QuestType.WEEKLY }).sort({ exp: 1 }).toArray();
     return questList;
 };
 
@@ -145,3 +146,28 @@ const getUserQuest = async (uid) => {
 };
 
 module.exports.getUserQuest = getUserQuest;
+
+const findUserQuest = async ({uid, qid, type}) => {
+    const date = type === QuestType.DAILY ? getTodayDateStr() : getWeekDateStr();
+    const db = await getDB(USER_QUEST_DB);
+    const quest = await db.findOne({ uid, qid, type, date });
+    return quest ?? null;
+};
+
+const updateUserQuestState = async ({ quest, newState }) => {
+    const { uid, qid, type, date } = quest;
+    const db = await getDB(USER_QUEST_DB);
+    await db.updateOne({ uid, qid, type, date }, {
+        $set: { state: newState }
+    });
+};
+
+const completeQuest = async ({uid, qid, type}) => {
+    const targetQuest = await findUserQuest({uid, qid, type});
+    if (!targetQuest || targetQuest.state === QuestState.DONE) return false;
+    await updateUserQuestState({ quest: targetQuest, newState: QuestState.DONE });
+    await addExp({uid, exp: targetQuest.exp});
+    return true;
+};
+
+module.exports.completeQuest = completeQuest;
