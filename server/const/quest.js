@@ -11,7 +11,8 @@ module.exports.QuestState = {
   DONE: 1,
 };
 
-const USER_QUEST_DB = 'UserQuest-test'; // test
-// const USER_QUEST_DB = 'UserQuest'; // test
+const USER_QUEST_DB = 'UserQuest';
 
 module.exports.USER_QUEST_DB = USER_QUEST_DB;
+
+module.exports.QUEST_DB = 'Quest';

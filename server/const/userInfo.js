@@ -3,11 +3,13 @@
  */
 module.exports.LEVEL_REWARD_DB = 'LevelReward';
 
-// module.exports.USER_ITEM_DB = 'UserItem';
-module.exports.USER_ITEM_DB = 'UserItem-test'; // todo: test
+module.exports.USER_ITEM_DB = 'UserItem';
 
-// module.exports.WEIGHT_RECORD_DB = 'WeightRecord';
-module.exports.WEIGHT_RECORD_DB = 'WeightRecord-test'; // todo: test
+module.exports.WEIGHT_RECORD_DB = 'WeightRecord';
+
+module.exports.BASE_INFO_DB = 'BaseInfo';
+
+module.exports.DEFAULT_LEVEL_UP_REWARD_COIN = 50;
 
 module.exports.LevelRewardType = {
     COIN: 0,

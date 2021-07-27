@@ -10,6 +10,7 @@ const {getBaseInfo} = require('../userInfo/baseInfo');
 const UserInfo = {
   async getUserInfo({uid}) {
     const baseInfo = await getBaseInfo({uid});
+    if (!baseInfo) throw { type: 'error', code: 'no such user' };
     const weight = baseInfo.weight || baseInfo.startWeight;
     return {...baseInfo, weight};
   },

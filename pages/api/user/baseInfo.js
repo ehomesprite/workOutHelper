@@ -10,8 +10,12 @@ const { UserInfo } = ServerAPI;
 const handler = async (req, res) => {
   const { uid } = req.body || {};
   if (!validParamsHandler(res, [uid])) return;
-  const baseInfo = await UserInfo.getUserInfo({uid});
-  res.status(200).json({ data: baseInfo, code: 200 });
+  try {
+    const baseInfo = await UserInfo.getUserInfo({uid});
+    res.status(200).json({ data: baseInfo, code: 200 });
+  } catch (e) {
+    res.status(400).json({ code: 400, msg: e.code });
+  }
 }
 
 export default handler;

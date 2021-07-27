@@ -5,6 +5,7 @@
 const {getDB} = require('../db');
 const testInsertQuest = async () => {
     const db = await getDB('Quest');
+    await db.deleteMany({});
     const quest = [];
     for (let i = 1; i <= 20; i++) {
         if (i <= 10) {
