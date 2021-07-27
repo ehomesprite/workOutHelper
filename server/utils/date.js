@@ -41,3 +41,11 @@ module.exports.formatTime = (timeStamp, _fmt = 'yyyy-MM-dd') => {
     });
     return fmt;
 };
+
+const MS_HOUR = 60 * 60 * 1000;
+
+const MS_DAY = 24 * MS_HOUR;
+
+module.exports.MS_HOUR = MS_HOUR;
+
+module.exports.MS_DAY = MS_DAY;
