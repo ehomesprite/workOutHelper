@@ -6,6 +6,9 @@ module.exports.LEVEL_REWARD_DB = 'LevelReward';
 // module.exports.USER_ITEM_DB = 'UserItem';
 module.exports.USER_ITEM_DB = 'UserItem-test'; // todo: test
 
+// module.exports.WEIGHT_RECORD_DB = 'WeightRecord';
+module.exports.WEIGHT_RECORD_DB = 'WeightRecord-test'; // todo: test
+
 module.exports.LevelRewardType = {
     COIN: 0,
     ITEM: 1,

@@ -1,8 +1,8 @@
 /**
  * created by zhangzihao on {2021/7/27}
  */
-const {completeQuest} = require('./index');
-const {getUserQuest} = require('./index');
+const {completeQuest} = require('../quest');
+const {getUserQuest} = require('../quest');
 const Quest = {
   async getUserQuestList({uid}) {
     const list = await getUserQuest(uid);

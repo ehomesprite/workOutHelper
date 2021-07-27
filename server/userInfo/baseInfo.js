@@ -4,7 +4,7 @@
 
 const {levelUp} = require('./level');
 const {getDB} = require('../db');
-const _addUser = async (userName) => {
+const _addUser = async (userName, start = 0, target = 0) => {
     const db = await getDB('BaseInfo');
     if (await db.findOne({userName})) {
         console.error('[_addUser]: this userName is used!');
@@ -22,8 +22,8 @@ const _addUser = async (userName) => {
         exp: 0,
         level: 0,
         lowestWeight: 0,
-        startWeight: 0,
-        targetWeight: 0,
+        startWeight: start,
+        targetWeight: target,
     });
 
     console.log(`[_addUser]: add ${userName} success`);

@@ -2,10 +2,10 @@
  * created by zhangzihao on {2021/7/27}
  */
 
-const {updateBaseInfo} = require('./baseInfo');
-const {addWeightRecord} = require('./weight');
-const {getWeightRecord} = require('./weight');
-const {getBaseInfo} = require('./baseInfo');
+const {updateBaseInfo} = require('../userInfo/baseInfo');
+const {addWeightRecord} = require('../userInfo/weight');
+const {getWeightRecord} = require('../userInfo/weight');
+const {getBaseInfo} = require('../userInfo/baseInfo');
 
 const UserInfo = {
   async getUserInfo({uid}) {
@@ -19,8 +19,10 @@ const UserInfo = {
   },
   async updateWeight({uid, weight}) {
     await addWeightRecord({uid, weight});
-    const {lowestWeight} = await getBaseInfo({uid});
-    if (weight < lowestWeight) await updateBaseInfo({uid, info: {weight, lowestWeight: weight}});
+    const baseInfo = await getBaseInfo({uid});
+    if (!baseInfo) throw { type: 'error', code: 'no such user' };
+    const {lowestWeight} = baseInfo;
+    if (lowestWeight && weight < lowestWeight) await updateBaseInfo({uid, info: {weight, lowestWeight: weight}});
     else await updateBaseInfo({uid, info: {weight}});
   },
 };

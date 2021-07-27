@@ -31,7 +31,7 @@ const hasUserDailyQuest = async ({uid, date}) => {
 
 const getDailyQuestList = async () => {
     const db = await getDB('Quest');
-    const list = await db.find({ type: QuestType.DAILY }).sort({ qid: 1 }).toArray();
+    const list = await db.find({ type: QuestType.DAILY }).sort({ qid: 1 }).project({ _id: 0 }).toArray();
     return list;
 };
 
@@ -84,14 +84,14 @@ const getWeekDateStr = () => {
 };
 
 const hasUserWeeklyQuest = async ({uid, date}) => {
-    const db = await getDB('UserQuest');
+    const db = await getDB(USER_QUEST_DB);
     const list = await db.find({uid, date, type: QuestType.WEEKLY}).toArray();
     return !!list.length;
 };
 
 const createUserWeeklyNormalQuestList = async () => {
     const db = await getDB('Quest');
-    const questList = await db.find({ type: QuestType.WEEKLY, level: 'N' }).toArray();
+    const questList = await db.find({ type: QuestType.WEEKLY, level: 'N' }).project({ _id: 0 }).toArray();
     const normalQuest = [];
     for (let i = 0; i < 4; i++) {
         const len = questList.length;
@@ -106,7 +106,7 @@ const createUserWeeklyHardQuest = async () => {
     const isVH = Math.random() < 0.15;
     const level = isVH ? 'VH' : 'H';
     const db = await getDB('Quest');
-    const questList = await db.find({ type: QuestType.WEEKLY, level }).toArray();
+    const questList = await db.find({ type: QuestType.WEEKLY, level }).project({ _id: 0 }).toArray();
     const len = questList.length;
     const n = getRandomNumber(len);
     const hardQuest = questList[n];
