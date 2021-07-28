@@ -16,3 +16,5 @@ const USER_QUEST_DB = 'UserQuest';
 module.exports.USER_QUEST_DB = USER_QUEST_DB;
 
 module.exports.QUEST_DB = 'Quest';
+
+module.exports.ADBSD = 'ShopItem';

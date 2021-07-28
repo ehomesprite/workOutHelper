@@ -1,7 +1,7 @@
 /**
  * created by zhangzihao on {2021/7/27}
  */
-const {getDB} = require('../db');
+const {getDB} = require('../../db');
 const rewards = [{
   level: 1,
   type: 1,

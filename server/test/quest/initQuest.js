@@ -2,7 +2,7 @@
  * created by zhangzihao on {2021/7/26}
  */
 
-const {getDB} = require('../db');
+const {getDB} = require('../../db');
 const testInsertQuest = async () => {
     const db = await getDB('Quest');
     await db.deleteMany({});
