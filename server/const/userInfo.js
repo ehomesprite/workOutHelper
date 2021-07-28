@@ -12,6 +12,11 @@ module.exports.BASE_INFO_DB = 'BaseInfo';
 module.exports.DEFAULT_LEVEL_UP_REWARD_COIN = 50;
 
 module.exports.LevelRewardType = {
-    COIN: 0,
-    ITEM: 1,
+  COIN: 0,
+  ITEM: 1,
+};
+
+module.exports.ItemStatus = {
+  ACTIVE: 0,
+  CONSUMED: 1,
 };

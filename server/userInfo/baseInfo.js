@@ -2,6 +2,7 @@
  * created by zhangzihao on {2021/7/26}
  */
 
+const {addItemToUser} = require('./item');
 const { LevelRewardType } = require("../const/userInfo");
 const { DEFAULT_LEVEL_UP_REWARD_COIN } = require("../const/userInfo");
 const { LEVEL_REWARD_DB } = require("../const/userInfo");
@@ -78,7 +79,7 @@ const getLevelReward = async ({ baseInfo, level }) => {
         return;
     }
     if (reward.type === LevelRewardType.ITEM) {
-        // await addItemToUser({ uid, item: reward.item });
+        await addItemToUser({ uid, item: reward.item });
         return;
     }
     throw { type: 'error', code: `Error Reward Type: ${JSON.stringify(reward)}` };
