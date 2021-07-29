@@ -1,0 +1,16 @@
+.header {
+  width: 7rem;
+  max-height: 4rem;
+  overflow: auto;
+  border: .04rem solid #000;
+  display: flex;
+  flex-wrap: wrap;
+  .item {
+    width: 3rem;
+    height: .3rem;
+    font-size: .3rem;
+    line-height: .3rem;
+    display: flex;
+    margin: .2rem;
+  }
+}
