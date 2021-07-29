@@ -2,8 +2,8 @@
  * created by zhangzihao on {2021/7/27}
  */
 
-function index() {
+function Index() {
 
 }
 
-export default index;
+export default Index;
