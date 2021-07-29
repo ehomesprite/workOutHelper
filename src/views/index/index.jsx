@@ -7,6 +7,7 @@ import style from './style.module.scss';
 import { useCallback, useEffect } from "react";
 import { actions } from "@/views/index/store";
 import { fetchUserInfo } from "@/api";
+import Level from "@/views/index/Level";
 
 function Index() {
   useCreateStore({ userInfo: null });
@@ -23,6 +24,7 @@ function Index() {
 
   return (<div className={style.core}>
     <Header/>
+    <Level/>
   </div>)
 }
 

@@ -3,6 +3,7 @@
  */
 import style from './style.module.scss';
 import { getStore } from "@/libs/store";
+import { Card } from "antd";
 
 function Item({ label, value }) {
   return (<div className={style.item}>
@@ -21,9 +22,12 @@ function ItemList({ userInfo }) {
 
 function Header() {
   const store = getStore();
-  return (<div className={style.header}>
+
+  if (!store.userInfo) return null;
+
+  return (<Card title="个人信息" className={style.header}>
     <ItemList userInfo={store.userInfo}/>
-  </div>);
+  </Card>);
 }
 
 export default Header;
