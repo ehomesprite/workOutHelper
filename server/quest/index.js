@@ -15,8 +15,8 @@ const getTodayDateStr = () => {
     const dateNow = formatTime(Date.now(), 'yyyy/MM/dd/hh').split('/');
     let [year, month, day, hour] = dateNow;
     let date = `${year}/${month}/${day}`;
-    if (+hour > 4) {
-        const lastDayDate = formatTime(Date.now() - (hour + 1) * MS_HOUR, 'yyyy/MM/dd');
+    if (+hour < 4) {
+        const lastDayDate = formatTime(Date.now() - (+hour + 1) * MS_HOUR, 'yyyy/MM/dd');
         date = `${lastDayDate} 04:00:00`;
     } else {
         date = `${date} 04:00:00`;
