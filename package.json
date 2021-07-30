@@ -11,8 +11,6 @@
   "dependencies": {
     "antd": "^4.16.9",
     "axios": "^0.21.1",
-    "element-react": "^1.4.34",
-    "element-theme-default": "^1.4.13",
     "less": "^4.1.1",
     "mongodb": "^4.0.1",
     "next": "11.0.1",

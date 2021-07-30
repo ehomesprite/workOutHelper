@@ -1,6 +1,6 @@
 .level {
   width: 100%;
-  margin-top: .2rem;
+  margin: .2rem 0;
   .container {
     height: 4.2rem;
     display: flex;
@@ -11,7 +11,7 @@
     height: 4rem;
     margin-right: .1rem;
     flex-shrink: 0;
-    border: 1px solid #f0f0f0;
+    border: 2px solid #f0f0f0;
     position: relative;
     display: flex;
     justify-content: center;

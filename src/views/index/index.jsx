@@ -3,6 +3,8 @@
  */
 import { getStore, useCreateStore } from "@/libs/store";
 import Header from "@/views/index/Header";
+import Menu from '@/views/index/Menu';
+import Quest from '@/views/index/Quest';
 import style from './style.module.scss';
 import { useCallback, useEffect } from "react";
 import { actions } from "@/views/index/store";
@@ -25,6 +27,8 @@ function Index() {
   return (<div className={style.core}>
     <Header/>
     <Level/>
+    <Quest/>
+    <Menu/>
   </div>)
 }
 
