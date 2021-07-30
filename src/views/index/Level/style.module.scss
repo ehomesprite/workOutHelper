@@ -9,8 +9,27 @@
   .item {
     width: 4rem;
     height: 4rem;
-    border: .02rem solid rgb(100, 100, 100);
     margin-right: .1rem;
     flex-shrink: 0;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    >.title {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: .4rem;
+      font-size: .32rem;
+      line-height: .4rem;
+      padding: 0 .1rem;
+      text-align: right;
+      background: rgba(0, 0, 0, .1);
+    }
+    >.content {
+      text-align: center;
+      font-size: .4rem;
+    }
   }
 }

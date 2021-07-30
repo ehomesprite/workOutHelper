@@ -2,6 +2,7 @@
  * created by zhangzihao on {2021/7/27}
  */
 
+const { getLevelRewardList } = require('../userInfo/baseInfo');
 const { consumeUserItem } = require('../userInfo/item');
 const { getUserItemList } = require('../userInfo/item');
 const { updateBaseInfo } = require('../userInfo/baseInfo');
@@ -34,6 +35,10 @@ const UserInfo = {
   },
   async consumeUserItem({ uid, itemId }) {
     await consumeUserItem({ uid, itemId });
+  },
+  async getLevelRewardList() {
+    const list = await getLevelRewardList();
+    return list;
   },
 };
 

@@ -93,3 +93,10 @@ const levelUp = async ({ baseInfo, newLevel }) => {
 };
 
 module.exports.levelUp = levelUp;
+
+const getLevelRewardList = async () => {
+  const db = await getDB(LEVEL_REWARD_DB);
+  const list = await db.find({}).sort({ level: 1 }).project({ _id: 0 }).toArray();
+  return list;
+};
+module.exports.getLevelRewardList = getLevelRewardList;

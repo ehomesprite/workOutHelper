@@ -1,6 +1,7 @@
 /**
  * created by zhangzihao on {2021/7/29}
  */
+import { fetchLevelRewardList } from '@/api';
 import style from './style.module.scss';
 import { Card } from "antd";
 import { useEffect, useState } from "react";
@@ -15,11 +16,12 @@ function Level() {
   const [rewardList, setRewardList] = useState(null);
 
   useEffect(() => {
-    setRewardList([
-      { level: 1, coin: 100 }, { level: 2, coin: 150 }, { level: 3, coin: 100 },
-      { level: 4, coin: 100 }, { level: 5, coin: 150 }, { level: 6, coin: 100 },
-    ]);
+    fetchLevelRewardList().then((list) => {
+      setRewardList(list);
+    });
   }, []);
+
+  if (!rewardList) return null;
 
   return <Card title="等级奖励" className={style.level}>
     <div className={style.container}>
